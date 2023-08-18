@@ -1,14 +1,13 @@
+import { Card, CardBlock } from './ContactCard.styled';
+
 export const ContactCard = ({ contact: { id, name, number }, onDelete }) => {
   return (
-    <div>
-      <li key={id}>
-        <h2>{name}</h2>
+    <CardBlock>
+      <Card key={id}>
+        <span>{name}</span>
         <span>{number}</span>
-      </li>
-
-      <div>
         <button onClick={() => onDelete(id)}>Delete</button>
-      </div>
-    </div>
+      </Card>
+    </CardBlock>
   );
 };

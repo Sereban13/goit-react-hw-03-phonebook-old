@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 
+import { GlobalStyle } from './GlobalStyled';
+
 export class App extends Component {
   state = {
     contacts: [],
@@ -16,20 +18,25 @@ export class App extends Component {
       };
     });
   };
+
+  handleDelete = сontactId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== сontactId
+        ),
+      };
+    });
+  };
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <div>
         <ContactForm onAdd={this.addContact} />
-        <ContactList contacts={this.state.contacts} />
+        <ContactList
+          contacts={this.state.contacts}
+          onDelete={this.handleDelete}
+        />
+        <GlobalStyle />
       </div>
     );
   }
