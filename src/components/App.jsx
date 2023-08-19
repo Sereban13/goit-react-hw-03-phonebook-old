@@ -3,8 +3,9 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 
 import { GlobalStyle } from './GlobalStyled';
+
+import { Section, Title } from './App.styled';
 import { SearchBar } from './SearchBar/SearchBar';
-import Section from './Section/Section';
 
 export class App extends Component {
   state = {
@@ -47,19 +48,19 @@ export class App extends Component {
       contact.name.toLowerCase().includes(filter.toLocaleLowerCase())
     );
     return (
-      <div>
-        <Section title={'Phonebook'} />
-        <ContactForm onAdd={this.addContact} contacts={this.state.contacts} />
-        <Section />
+      <Section>
+        <Title>Phonebook</Title>
 
-        <Section title={'Contacts'} />
+        <ContactForm onAdd={this.addContact} contacts={this.state.contacts} />
+
+        <Title>Contacts</Title>
 
         <SearchBar filterName={filter} onChangeName={this.changeNameFilter} />
+
         <ContactList contacts={visibleContacts} onDelete={this.handleDelete} />
-        <Section />
 
         <GlobalStyle />
-      </div>
+      </Section>
     );
   }
 }

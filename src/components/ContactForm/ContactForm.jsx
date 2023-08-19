@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Input, Forma } from './ContactForm.styled';
+import { Input, Forma, Label, ButtonSubmit } from './ContactForm.styled';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 
@@ -34,25 +34,25 @@ export const ContactForm = ({ onAdd, contacts }) => (
       }}
     >
       <Forma>
-        <label htmlFor="name">Name</label>
+        <Label htmlFor="name">Name</Label>
         <Input
           id="name"
           name="name"
-          placeholder="Enter name..."
+          placeholder="Enter the name..."
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         />
 
-        <label htmlFor="number">Number</label>
+        <Label htmlFor="number">Number</Label>
         <Input
           id="number"
           name="number"
           type="tel"
-          placeholder="Enter your phone number..."
+          placeholder="Enter the phone number..."
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         />
 
-        <button type="submit">Add contact</button>
+        <ButtonSubmit type="submit">Add contact</ButtonSubmit>
       </Forma>
     </Formik>
   </div>
