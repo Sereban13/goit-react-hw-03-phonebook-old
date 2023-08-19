@@ -20,7 +20,7 @@ export class App extends Component {
   };
 
   changeNameFilter = newName => {
-    console.log(newName);
+    // console.log(newName);
     this.setState({
       filter: newName,
     });
