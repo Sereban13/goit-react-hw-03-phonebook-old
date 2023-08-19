@@ -12,7 +12,7 @@ const schema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onAdd }) => (
+export const ContactForm = ({ onAdd, contacts }) => (
   <div>
     <Formik
       initialValues={{
@@ -21,9 +21,16 @@ export const ContactForm = ({ onAdd }) => (
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        onAdd({ ...values, id: nanoid() });
-        actions.resetForm();
-        console.log(values);
+        const isExistName = contacts.find(
+          contact => contact.name === values.name
+        );
+        if (isExistName) {
+          alert(`Contact "${values.name}" is already exist`);
+        } else {
+          onAdd({ ...values, id: nanoid() });
+          actions.resetForm();
+          console.log(values);
+        }
       }}
     >
       <Forma>
