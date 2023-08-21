@@ -12,7 +12,7 @@ const schema = Yup.object().shape({
   number: Yup.string().matches(phoneRegExp).required('Required'),
 });
 
-export const ContactForm = ({ onAdd, contacts }) => (
+export const ContactForm = ({ onAdd }) => (
   <div>
     <Formik
       initialValues={{

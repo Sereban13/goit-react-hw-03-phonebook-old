@@ -24,6 +24,7 @@ export class App extends Component {
       filter: newName,
     });
   };
+
   addContact = newContact => {
     const { contacts } = this.state;
     const isExistName = contacts.find(
@@ -51,6 +52,30 @@ export class App extends Component {
       };
     });
   };
+
+  componentDidMount() {
+    // console.log('Component App did mount');
+
+    const contacts = localStorage.getItem('contacts');
+    // console.log(contacts);
+    if (contacts !== null) {
+      this.setState({ contacts: JSON.parse(contacts) });
+    }
+    // const parsedContacts = JSON.parse(contacts);
+    // this.setState({ contacts: parsedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(prevState);
+    // console.log(this.state);
+
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Component did update');
+
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter, contacts } = this.state;
 
