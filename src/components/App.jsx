@@ -25,6 +25,16 @@ export class App extends Component {
     });
   };
   addContact = newContact => {
+    const { contacts } = this.state;
+    const isExistName = contacts.find(
+      contact =>
+        contact.name.toLowerCase() === newContact.name.toLocaleLowerCase()
+    );
+    if (isExistName) {
+      alert(`Contact "${newContact.name}" is already exist`);
+      return;
+    }
+
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, newContact],
