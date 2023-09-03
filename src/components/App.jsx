@@ -19,7 +19,6 @@ export class App extends Component {
   };
 
   changeNameFilter = newName => {
-    // console.log(newName);
     this.setState({
       filter: newName,
     });
@@ -28,8 +27,7 @@ export class App extends Component {
   addContact = newContact => {
     const { contacts } = this.state;
     const isExistName = contacts.find(
-      contact =>
-        contact.name.toLowerCase() === newContact.name.toLocaleLowerCase()
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
     if (isExistName) {
       alert(`Contact "${newContact.name}" is already exist`);
@@ -54,24 +52,14 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    // console.log('Component App did mount');
-
     const contacts = localStorage.getItem('contacts');
-    // console.log(contacts);
     if (contacts !== null) {
       this.setState({ contacts: JSON.parse(contacts) });
     }
-    // const parsedContacts = JSON.parse(contacts);
-    // this.setState({ contacts: parsedContacts });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(prevState);
-    // console.log(this.state);
-
     if (this.state.contacts !== prevState.contacts) {
-      console.log('Component did update');
-
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
@@ -80,7 +68,7 @@ export class App extends Component {
     const { filter, contacts } = this.state;
 
     const visibleContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLocaleLowerCase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     return (
       <Section>
